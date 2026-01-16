@@ -168,12 +168,8 @@ public class SecretDocumentServiceTest {
             
             //given
             String presidentCode = "PRT45";
-            SecretDocumentDTO dto = new SecretDocumentDTO("1234","confidentialityReason", "title", "content", "author",  "hashSignature");
-            List<SecretDocumentDTO> dtos = List.of(dto);
 
             SecretDocument entity = new SecretDocument();
-            List<SecretDocument> entities = List.of(entity);
-
             entity.setHashSignature("hashSignature"); 
 
             //when then
