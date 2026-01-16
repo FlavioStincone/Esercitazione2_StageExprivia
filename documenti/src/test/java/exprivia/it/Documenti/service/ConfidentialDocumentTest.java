@@ -100,6 +100,29 @@ public class ConfidentialDocumentTest {
                 service.getDocumentByProtocolNumber("123", invalidPresidentCode);
             });
         }
+
+        @Test
+        void should_ThrowException_When_PresidentCodeIsvalid() {
+
+            //given
+            String protocoloNumber = "1234";
+            String presidentCode = "PRT45";
+
+            ConfidentialDocument entity = new ConfidentialDocument(protocoloNumber, "motivo", "titolo", "content", "author", "hashSignature");
+
+            ConfidentialDocumentDTO expectedDto = new ConfidentialDocumentDTO(protocoloNumber, "motivo", "titolo", "content", "author", "hashSignature");
+
+            when(repository.findByProtocolNumber(protocoloNumber)).thenReturn(Optional.of(entity));
+            when(passwordEncoder.matches(presidentCode, entity.getHashSignature())).thenReturn(true);
+            when(mapper.toDTO(entity)).thenReturn(expectedDto);
+
+            //when
+            ConfidentialDocumentDTO result = service.getDocumentByProtocolNumber(protocoloNumber, presidentCode);
+
+            //then
+            assertNotNull(result);
+            assertEquals(expectedDto, result);
+        }
     
     }
 
