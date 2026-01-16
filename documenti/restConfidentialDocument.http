@@ -1,0 +1,30 @@
+GET http://127.0.0.1:8080/document/confidential/PRT45
+
+###
+GET http://127.0.0.1:8080/document/confidential/GR007/LawrenceWashington
+
+###
+POST http://127.0.0.1:8080/document/confidential/PRT45
+Content-Type: application/json 
+
+{
+  "protocolNumber": "GR007", 
+  "title": "Riunione codice 007 del 12/01/2026",
+  "confidentialityReason": "Possibile Attacco Della Groenlandia",
+  "content": "Il documento descrive i punti discussi durante la riunione di cattura della Groenlandia.",
+  "author": "Lawrence Washington",
+  "hashSignature": "LawrenceWashington"
+}
+
+###
+POST http://127.0.0.1:8080/document/confidential/PRO44
+Content-Type: application/json 
+
+{
+  "protocolNumber": "GR021",
+  "title": "Briefing operativo del 15/01/2026",
+  "confidentialityReason": "Minaccia strategica area artica",
+  "content": "Il documento riassume le decisioni prese durante il briefing sulle operazioni in area artica.",
+  "author": "Edward Thompson",
+  "hashSignature": "EdwardThompson"
+}

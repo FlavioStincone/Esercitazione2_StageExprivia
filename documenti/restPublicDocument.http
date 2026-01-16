@@ -1,0 +1,28 @@
+GET http://127.0.0.1:8080/document/public
+
+###
+GET http://127.0.0.1:8080/document/public/A1428
+
+###
+POST http://127.0.0.1:8080/document/public
+Content-Type: application/json 
+
+{
+  "protocolNumber": "A1428", 
+  "title": "Verbale riunione del 10/01/2026",
+  "content": "Il documento descrive i punti discussi durante la riunione.",
+  "author": "Mario Rossi",
+  "hashSignature": "Sergio Mattarella"
+}
+
+###
+POST http://127.0.0.1:8080/document/public
+Content-Type: application/json 
+
+{
+  "protocolNumber": "B2379",
+  "title": "Relazione annuale attività 2025",
+  "content": "Il documento riassume le principali attività svolte durante l'anno 2025.",
+  "author": "Luigi Bianchi",
+  "hashSignature": "Carlo Conti"
+}
