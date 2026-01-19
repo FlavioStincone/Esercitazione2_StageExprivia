@@ -11,5 +11,6 @@ public interface SecretDocumentRepository extends JpaRepository<SecretDocument, 
     Optional<SecretDocument> findByProtocolNumber(String protocolNumber);
 
     Optional<SecretDocument> deleteByProtocolNumber(String protocolNumber);
-    
+
+    boolean existsByProtocolNumber(String protocolNumber);
 }

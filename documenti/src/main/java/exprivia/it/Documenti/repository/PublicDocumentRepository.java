@@ -10,4 +10,6 @@ public interface PublicDocumentRepository extends JpaRepository<PublicDocument, 
 
     //findByProtocolNumber
     Optional<PublicDocument> findByProtocolNumber(String protocolNumber);
+
+    boolean existsByProtocolNumber(String protocolNumber);
 }

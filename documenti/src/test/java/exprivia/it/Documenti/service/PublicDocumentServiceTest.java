@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -19,9 +20,11 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import exprivia.it.Documenti.exception.DocumentAlreadyExistsException;
 import exprivia.it.Documenti.exception.DocumentNotFoundException;
 import exprivia.it.Documenti.mapper.PublicDocumentMapper;
 import exprivia.it.Documenti.model.dto.PublicDocumentDTO;
+import exprivia.it.Documenti.model.dto.SecretDocumentDTO;
 import exprivia.it.Documenti.model.entity.PublicDocument;
 import exprivia.it.Documenti.repository.PublicDocumentRepository;
 import exprivia.it.Documenti.service.impl.PublicDocumentServiceImpl;
@@ -109,28 +112,44 @@ public class PublicDocumentServiceTest {
             verify(repository, times(1)).save(any());
         }
 
-        @Nested
-        class getDocumentsTest{
+        @Test
+        void should_ThrowException_When_DocumentAlredyExist(){
 
-            @Test
-            void should_ReturnListOfDTOs_When_DocumentsExist(){
+            // given
+            String protocolloEsistente = "DOC-123";
+            PublicDocumentDTO inputDto = new PublicDocumentDTO(protocolloEsistente, "Title", "Content", "Auth", "Pass");
 
-                //given
-                List<PublicDocument> entities = List.of(new PublicDocument(), new PublicDocument());
-                List<PublicDocumentDTO> dtos = List.of( new PublicDocumentDTO("1", "T", "C", "A", "H"), new PublicDocumentDTO("2", "T", "C", "A", "H"));
+            when(repository.existsByProtocolNumber(protocolloEsistente)).thenReturn(true);
 
-                when(repository.findAll()).thenReturn(entities);
-                when(mapper.toListDTO(entities)).thenReturn(dtos);
+            // when then
+            assertThrows(DocumentAlreadyExistsException.class, () -> {
+                service.createPublicDocument(inputDto);
+            });
 
-                //when
-                List<PublicDocumentDTO> result = service.getPublicDocuments();
-
-                //then
-                assertNotNull(result);
-                assertEquals(2, result.size()); // Best practice prima il valore atteso, poi quello attuale
-                verify(repository, times(1)).findAll();
-            }
+            verify(repository, never()).save(any());
         }
+    }
 
+    @Nested
+    class getDocumentsTest{
+
+        @Test
+        void should_ReturnListOfDTOs_When_DocumentsExist(){
+
+            //given
+            List<PublicDocument> entities = List.of(new PublicDocument(), new PublicDocument());
+            List<PublicDocumentDTO> dtos = List.of( new PublicDocumentDTO("1", "T", "C", "A", "H"), new PublicDocumentDTO("2", "T", "C", "A", "H"));
+
+            when(repository.findAll()).thenReturn(entities);
+            when(mapper.toListDTO(entities)).thenReturn(dtos);
+
+            //when
+            List<PublicDocumentDTO> result = service.getPublicDocuments();
+
+            //then
+            assertNotNull(result);
+            assertEquals(2, result.size()); // Best practice prima il valore atteso, poi quello attuale
+            verify(repository, times(1)).findAll();
+        }
     }
 }

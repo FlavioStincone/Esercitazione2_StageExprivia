@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import exprivia.it.Documenti.exception.DocumentAlreadyExistsException;
 import exprivia.it.Documenti.exception.DocumentNotFoundException;
 import exprivia.it.Documenti.exception.EmergencyProtocolException;
 import exprivia.it.Documenti.mapper.SecretDocumentMapper;
@@ -33,8 +34,13 @@ public class SecretDocumentServiceImpl implements ISecreteDocument {
         if (!PresidentCodeEnum.existsCode(presidentCode.toUpperCase())) {
             throw new EmergencyProtocolException("Codice presidente non valido, Documento Riservato Violato!");
         }
+
+         if(repository.existsByProtocolNumber(dto.protocolNumber())){ //repository.findByProtocolNumber(entity.getProtocolNumber()).isPresent()
+            throw new DocumentAlreadyExistsException("Document with protocol " + dto.protocolNumber() + " alredy exist");
+        }
         
         SecretDocument entity = mapper.toEntity(dto);
+
         entity.setHashSignature(passwordEncoder.encode(entity.getHashSignature()));
         SecretDocument saved = repository.save(entity);
 

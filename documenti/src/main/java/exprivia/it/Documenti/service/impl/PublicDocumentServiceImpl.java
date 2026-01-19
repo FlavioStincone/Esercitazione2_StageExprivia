@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import exprivia.it.Documenti.exception.DocumentAlreadyExistsException;
 import exprivia.it.Documenti.exception.DocumentNotFoundException;
 import exprivia.it.Documenti.mapper.PublicDocumentMapper;
 import exprivia.it.Documenti.model.dto.PublicDocumentDTO;
@@ -27,6 +28,10 @@ public class PublicDocumentServiceImpl implements IPublicDocument {
 
     @Override
     public PublicDocumentDTO createPublicDocument(PublicDocumentDTO dto) {
+
+        if(repository.existsByProtocolNumber(dto.protocolNumber())){ //repository.findByProtocolNumber(entity.getProtocolNumber()).isPresent()
+            throw new DocumentAlreadyExistsException("Document with protocol " + dto.protocolNumber() + " alredy exist");
+        }
 
         PublicDocument entity = mapper.toEntity(dto);
 

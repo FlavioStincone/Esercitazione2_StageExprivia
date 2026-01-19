@@ -3,6 +3,7 @@ package exprivia.it.Documenti.service;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -18,6 +19,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import exprivia.it.Documenti.exception.DocumentAlreadyExistsException;
 import exprivia.it.Documenti.exception.DocumentNotFoundException;
 import exprivia.it.Documenti.exception.EmergencyProtocolException;
 import exprivia.it.Documenti.mapper.SecretDocumentMapper;
@@ -83,6 +85,24 @@ public class SecretDocumentServiceTest {
             verify(passwordEncoder, times(1)).encode("hashSignature");
             verify(repository, times(1)).save(any());
         }
+
+        @Test
+        void should_ThrowException_When_DocumentAlredyExist(){
+
+            // given
+            String validCode = "PRT45";
+            String protocolloEsistente = "DOC-123";
+            SecretDocumentDTO inputDto = new SecretDocumentDTO(protocolloEsistente, "Reason", "Title", "Content", "Auth", "Pass");
+
+            when(repository.existsByProtocolNumber(protocolloEsistente)).thenReturn(true);
+
+            // when then
+            assertThrows(DocumentAlreadyExistsException.class, () -> {
+                service.createSecretDocument(inputDto, validCode);
+            });
+
+            verify(repository, never()).save(any());
+        }
     }
 
     @Nested
@@ -126,7 +146,7 @@ public class SecretDocumentServiceTest {
         }
 
         @Test
-        void should_ReturnDTO_When_DocumentoFound() {
+        void should_ReturnDTO_When_DocumentFound() {
             
             //given
             String protocollo = "AREA-51";

@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import exprivia.it.Documenti.model.dto.ConfidentialDocumentDTO;
 import exprivia.it.Documenti.service.IConfidentialDocument;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 
 
@@ -25,12 +28,33 @@ public class ConfidentialDocumentController {
     private IConfidentialDocument service;
 
     // GET /confidential/{presidentCode}
+    @Operation(
+        summary = "Recupera tutti i documenti pubblici dando il codice presidente",
+        description = "Restituisce una lista completa di documenti confidenziali o lista vuota"
+    )
+
+    @ApiResponses({
+        @ApiResponse(responseCode = "201", description = "Documenti Trovati"),
+        @ApiResponse(responseCode = "400", description = "Codice Presidente non valido")
+    })
+
     @GetMapping("/confidential/{presidentCode}")
     public List<ConfidentialDocumentDTO> getConfidentialDocuments(@PathVariable String presidentCode) {
         return service.getConfidentialDocuments(presidentCode);
     }
 
     // GET /confidential/{protocolNumber}/{codeOrsignature}
+    @Operation(
+        summary = "Recupera il documento confidenziale dato il numero di protocollo e il codice presidente o firma del documento corrente corretto",
+        description = "Restituisce se esistente il Documento"
+    )
+
+    @ApiResponses({
+        @ApiResponse(responseCode = "201", description = "Documenti Trovati"),
+        @ApiResponse(responseCode = "400", description = "Codice Presidente non valido"),
+        @ApiResponse(responseCode = "404", description = "Nessun documento trovato")
+    })
+
     @GetMapping("/confidential/{protocolNumber}/{codeOrsignature}")
     public ResponseEntity<ConfidentialDocumentDTO> getConfidentialDocument(@PathVariable String protocolNumber, @PathVariable String codeOrsignature) {
         
@@ -40,6 +64,17 @@ public class ConfidentialDocumentController {
     }
 
     // POST /confidential/{presidentCode}
+    @Operation(
+        summary = "crea un documento confidenziale",
+        description = "crea il documento confidenziale e lo salva nel databse"
+    )
+
+    @ApiResponses({
+        @ApiResponse(responseCode = "201", description = "Documenti Creato con Successo"),
+        @ApiResponse(responseCode = "400", description = "Codice Presidente non valido"),
+        @ApiResponse(responseCode = "409", description = "Documento già esistente")
+    })
+
     @PostMapping("/confidential/{presidentCode}")
     public ResponseEntity<ConfidentialDocumentDTO> createConfidentialDocument(@Valid @RequestBody ConfidentialDocumentDTO dto, @PathVariable String presidentCode) {
 

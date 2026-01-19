@@ -22,7 +22,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import exprivia.it.Documenti.model.dto.PublicDocumentDTO;
 import exprivia.it.Documenti.service.IPublicDocument;
 
-@WebMvcTest(PublicDocumenController.class)
+@WebMvcTest(PublicDocumentController.class)
 class PublicDocumenControllerTest {
 
     @Autowired

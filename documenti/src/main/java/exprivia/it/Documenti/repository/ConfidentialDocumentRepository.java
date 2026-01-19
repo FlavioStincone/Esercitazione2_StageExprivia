@@ -10,5 +10,6 @@ public interface ConfidentialDocumentRepository extends JpaRepository<Confidenti
 
     //findByProtocolNumber
     Optional<ConfidentialDocument> findByProtocolNumber(String protocolNumber);
-    
+
+    boolean existsByProtocolNumber(String protocolNumber);   
 }

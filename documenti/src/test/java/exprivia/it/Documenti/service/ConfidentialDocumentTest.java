@@ -3,6 +3,7 @@ package exprivia.it.Documenti.service;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -18,6 +19,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import exprivia.it.Documenti.exception.DocumentAlreadyExistsException;
 import exprivia.it.Documenti.exception.DocumentNotFoundException;
 import exprivia.it.Documenti.exception.InvalidPresidentCodeException;
 import exprivia.it.Documenti.mapper.ConfidentialDocumentMapper;
@@ -219,6 +221,25 @@ public class ConfidentialDocumentTest {
             assertThrows(InvalidPresidentCodeException.class, () -> {
                 service.createConfidentialDocument(inputDTO, invalidPresidentCode);
             });
+        }
+
+        @Test
+        void should_ThrowException_When_DocumentAlredyExist(){
+
+            // given
+            String validCode = "PRT45";
+            String protocolloEsistente = "DOC-123";
+            ConfidentialDocumentDTO inputDto = new ConfidentialDocumentDTO(protocolloEsistente, "Reason", "Title", "Content", "Auth", "Pass");
+
+            when(repository.existsByProtocolNumber(protocolloEsistente)).thenReturn(true);
+
+            // when then
+            assertThrows(DocumentAlreadyExistsException.class, () -> {
+                service.createConfidentialDocument(inputDto, validCode);
+            });
+
+            verify(repository, never()).save(any());
+
         }
     }
     
