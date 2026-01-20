@@ -1,4 +1,4 @@
-package exprivia.it.Documenti.service.impl;
+package exprivia.it.documenti.service.impl;
 
 import java.util.List;
 
@@ -6,13 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import exprivia.it.Documenti.exception.DocumentAlreadyExistsException;
-import exprivia.it.Documenti.exception.DocumentNotFoundException;
-import exprivia.it.Documenti.mapper.PublicDocumentMapper;
-import exprivia.it.Documenti.model.dto.PublicDocumentDTO;
-import exprivia.it.Documenti.model.entity.PublicDocument;
-import exprivia.it.Documenti.repository.PublicDocumentRepository;
-import exprivia.it.Documenti.service.IPublicDocument;
+import exprivia.it.documenti.exception.DocumentAlreadyExistsException;
+import exprivia.it.documenti.exception.DocumentNotFoundException;
+import exprivia.it.documenti.mapper.PublicDocumentMapper;
+import exprivia.it.documenti.model.dto.PublicDocumentDTO;
+import exprivia.it.documenti.model.entity.PublicDocument;
+import exprivia.it.documenti.repository.PublicDocumentRepository;
+import exprivia.it.documenti.service.IPublicDocument;
 
 @Service
 public class PublicDocumentServiceImpl implements IPublicDocument {

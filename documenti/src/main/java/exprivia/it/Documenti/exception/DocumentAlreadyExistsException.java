@@ -1,4 +1,4 @@
-package exprivia.it.Documenti.exception;
+package exprivia.it.documenti.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

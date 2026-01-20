@@ -1,4 +1,4 @@
-package exprivia.it.Documenti.service.impl;
+package exprivia.it.documenti.service.impl;
 
 import java.util.List;
 
@@ -6,15 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import exprivia.it.Documenti.exception.DocumentAlreadyExistsException;
-import exprivia.it.Documenti.exception.DocumentNotFoundException;
-import exprivia.it.Documenti.exception.InvalidPresidentCodeException;
-import exprivia.it.Documenti.mapper.ConfidentialDocumentMapper;
-import exprivia.it.Documenti.model.dto.ConfidentialDocumentDTO;
-import exprivia.it.Documenti.model.entity.ConfidentialDocument;
-import exprivia.it.Documenti.model.enums.PresidentCodeEnum;
-import exprivia.it.Documenti.repository.ConfidentialDocumentRepository;
-import exprivia.it.Documenti.service.IConfidentialDocument;
+import exprivia.it.documenti.exception.DocumentAlreadyExistsException;
+import exprivia.it.documenti.exception.DocumentNotFoundException;
+import exprivia.it.documenti.exception.InvalidPresidentCodeException;
+import exprivia.it.documenti.mapper.ConfidentialDocumentMapper;
+import exprivia.it.documenti.model.dto.ConfidentialDocumentDTO;
+import exprivia.it.documenti.model.entity.ConfidentialDocument;
+import exprivia.it.documenti.model.enums.PresidentCodeEnum;
+import exprivia.it.documenti.repository.ConfidentialDocumentRepository;
+import exprivia.it.documenti.service.IConfidentialDocument;
 
 
 @Service
@@ -28,7 +28,7 @@ public class ConfidentialDocumentServiceImpl implements IConfidentialDocument {
 
     @Autowired
     private ConfidentialDocumentMapper mapper;
-
+    
    @Override
     public ConfidentialDocumentDTO createConfidentialDocument(ConfidentialDocumentDTO dto, String presidentCode) {
         if (!PresidentCodeEnum.existsCode(presidentCode.toUpperCase())) {

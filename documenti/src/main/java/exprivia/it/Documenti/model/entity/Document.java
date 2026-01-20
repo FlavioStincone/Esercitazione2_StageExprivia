@@ -1,4 +1,4 @@
-package exprivia.it.Documenti.model.entity;
+package exprivia.it.documenti.model.entity;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

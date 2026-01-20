@@ -1,4 +1,4 @@
-package exprivia.it.Documenti.model.dto;
+package exprivia.it.documenti.model.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;

@@ -9,9 +9,9 @@ To Do List:
 - Implementare interfaccia nei Service FATTO 14/01/2026
 - Modificare il nome delle cartelle (com,example) FATTO 14/01/2026
 
-- Studiare OpenAPI 26/01/2026 DA FARE
-- Implementare diversi DB con Docker e Profili 26/01/2026 (Profili fatti, db implementato ma comunque meglio vedere più     approfondiatamente Docker) DA FARE 
-- Studiare Test Integrativi 26/01/2026 FATTO 19/01/2026
+- Studiare OpenAPI FATTO 19/01/2026
+- Implementare diversi DB con Docker e Profili 26/01/2026 (Profili fatti, db implementato ma comunque meglio vedere più approfondiatamente Docker) DA FARE 26/01/2026
+- Studiare Test Integrativi FATTO 19/01/2026
 
 - Come escludere le classi su jacoco FATTO 15/01/2026
 

@@ -1,4 +1,4 @@
-package exprivia.it.Documenti.model.enums;
+package exprivia.it.documenti.model.enums;
 
 public enum PresidentCodeEnum {
 

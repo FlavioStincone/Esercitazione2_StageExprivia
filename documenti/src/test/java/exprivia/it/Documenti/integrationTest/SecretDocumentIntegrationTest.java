@@ -1,4 +1,4 @@
-package exprivia.it.Documenti.integrationTest;
+package exprivia.it.documenti.integrationTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -17,9 +17,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import exprivia.it.Documenti.model.dto.ConfidentialDocumentDTO;
-import exprivia.it.Documenti.model.entity.SecretDocument;
-import exprivia.it.Documenti.repository.SecretDocumentRepository;
+import exprivia.it.documenti.model.dto.ConfidentialDocumentDTO;
+import exprivia.it.documenti.model.entity.SecretDocument;
+import exprivia.it.documenti.repository.SecretDocumentRepository;
 
 @SpringBootTest //si carica TUTTO il contesto Spring (Controller, Service, Repo, DB)
 @AutoConfigureMockMvc //si configura MockMvc per fare chiamate HTTP fittizie

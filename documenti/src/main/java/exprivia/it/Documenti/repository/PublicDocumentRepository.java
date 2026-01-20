@@ -1,10 +1,10 @@
-package exprivia.it.Documenti.repository;
+package exprivia.it.documenti.repository;
 
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import exprivia.it.Documenti.model.entity.PublicDocument;
+import exprivia.it.documenti.model.entity.PublicDocument;
 
 public interface PublicDocumentRepository extends JpaRepository<PublicDocument, Long> {
 

@@ -1,4 +1,4 @@
-package exprivia.it.Documenti.controller;
+package exprivia.it.documenti.controller;
 
 import java.util.List;
 
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import exprivia.it.Documenti.model.dto.SecretDocumentDTO;
-import exprivia.it.Documenti.service.ISecreteDocument;
+import exprivia.it.documenti.model.dto.SecretDocumentDTO;
+import exprivia.it.documenti.service.ISecreteDocument;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;

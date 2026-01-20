@@ -1,8 +1,8 @@
-package exprivia.it.Documenti.service;
+package exprivia.it.documenti.service;
 
 import java.util.List;
 
-import exprivia.it.Documenti.model.dto.ConfidentialDocumentDTO;
+import exprivia.it.documenti.model.dto.ConfidentialDocumentDTO;
 
 public interface IConfidentialDocument {
 

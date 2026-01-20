@@ -1,12 +1,12 @@
-package exprivia.it.Documenti.mapper;
+package exprivia.it.documenti.mapper;
 
 import java.util.List;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-import exprivia.it.Documenti.model.dto.ConfidentialDocumentDTO;
-import exprivia.it.Documenti.model.entity.ConfidentialDocument;
+import exprivia.it.documenti.model.dto.ConfidentialDocumentDTO;
+import exprivia.it.documenti.model.entity.ConfidentialDocument;
 
 /*
     FIXME: Field mapper in exprivia.it.Documenti.service.impl.ConfidentialDocumentServiceImpl required a bean of type 'exprivia.it.Documenti.mapper.ConfidentialDocumentMapper' that could not be found.

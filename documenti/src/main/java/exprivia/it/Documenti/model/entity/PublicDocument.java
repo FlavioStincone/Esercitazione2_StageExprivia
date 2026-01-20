@@ -1,4 +1,4 @@
-package exprivia.it.Documenti.model.entity;
+package exprivia.it.documenti.model.entity;
 
 import jakarta.persistence.Entity;
 import lombok.Getter;
@@ -11,9 +11,9 @@ public class PublicDocument extends Document{
     
     private int viewsNumber;
 
-    public PublicDocument()
-    {
+    public PublicDocument(){
         super();
+        this.viewsNumber = 0;
     }
     
     public PublicDocument(String protocolNumber, String title, String content, String author, String hashSignature){

@@ -1,10 +1,10 @@
-package exprivia.it.Documenti.repository;
+package exprivia.it.documenti.repository;
 
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import exprivia.it.Documenti.model.entity.ConfidentialDocument;
+import exprivia.it.documenti.model.entity.ConfidentialDocument;
 
 public interface ConfidentialDocumentRepository extends JpaRepository<ConfidentialDocument, Long> {
 

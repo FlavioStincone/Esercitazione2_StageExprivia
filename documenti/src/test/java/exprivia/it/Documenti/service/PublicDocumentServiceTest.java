@@ -1,4 +1,4 @@
-package exprivia.it.Documenti.service;
+package exprivia.it.documenti.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -20,14 +20,13 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import exprivia.it.Documenti.exception.DocumentAlreadyExistsException;
-import exprivia.it.Documenti.exception.DocumentNotFoundException;
-import exprivia.it.Documenti.mapper.PublicDocumentMapper;
-import exprivia.it.Documenti.model.dto.PublicDocumentDTO;
-import exprivia.it.Documenti.model.dto.SecretDocumentDTO;
-import exprivia.it.Documenti.model.entity.PublicDocument;
-import exprivia.it.Documenti.repository.PublicDocumentRepository;
-import exprivia.it.Documenti.service.impl.PublicDocumentServiceImpl;
+import exprivia.it.documenti.exception.DocumentAlreadyExistsException;
+import exprivia.it.documenti.exception.DocumentNotFoundException;
+import exprivia.it.documenti.mapper.PublicDocumentMapper;
+import exprivia.it.documenti.model.dto.PublicDocumentDTO;
+import exprivia.it.documenti.model.entity.PublicDocument;
+import exprivia.it.documenti.repository.PublicDocumentRepository;
+import exprivia.it.documenti.service.impl.PublicDocumentServiceImpl;
 
 @ExtendWith(MockitoExtension.class)
 public class PublicDocumentServiceTest {

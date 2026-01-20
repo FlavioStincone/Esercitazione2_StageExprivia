@@ -1,4 +1,4 @@
-package exprivia.it.Documenti.controller;
+package exprivia.it.documenti.controller;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -19,8 +19,9 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import exprivia.it.Documenti.model.dto.PublicDocumentDTO;
-import exprivia.it.Documenti.service.IPublicDocument;
+import exprivia.it.documenti.controller.PublicDocumentController;
+import exprivia.it.documenti.model.dto.PublicDocumentDTO;
+import exprivia.it.documenti.service.IPublicDocument;
 
 @WebMvcTest(PublicDocumentController.class)
 class PublicDocumenControllerTest {
@@ -77,8 +78,8 @@ class PublicDocumenControllerTest {
         @Test
         void should_CreateDocument_When_Valid() throws Exception {
             // given
-            PublicDocumentDTO input = new PublicDocumentDTO("N1", "Title", "Content", "Author", "clearPass");
-            PublicDocumentDTO output = new PublicDocumentDTO("N1", "Title", "Content", "Author", "HASHED_PASS");
+            PublicDocumentDTO input = new PublicDocumentDTO("001", "Title", "Content", "Author", "clearPass");
+            PublicDocumentDTO output = new PublicDocumentDTO("001", "Title", "Content", "Author", "HASHED_PASS");
             
             when(service.createPublicDocument(any(PublicDocumentDTO.class))).thenReturn(output);
 

@@ -1,4 +1,4 @@
-package exprivia.it.Documenti.controller;
+package exprivia.it.documenti.controller;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -18,8 +18,9 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import exprivia.it.Documenti.model.dto.SecretDocumentDTO;
-import exprivia.it.Documenti.service.ISecreteDocument;
+import exprivia.it.documenti.controller.SecretDocumentController;
+import exprivia.it.documenti.model.dto.SecretDocumentDTO;
+import exprivia.it.documenti.service.ISecreteDocument;
 
 @WebMvcTest(SecretDocumentController.class)
 public class SecretDocumentControllerTest {

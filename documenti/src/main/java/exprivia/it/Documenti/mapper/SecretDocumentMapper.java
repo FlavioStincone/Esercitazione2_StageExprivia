@@ -1,12 +1,12 @@
-package exprivia.it.Documenti.mapper;
+package exprivia.it.documenti.mapper;
 
 import java.util.List;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-import exprivia.it.Documenti.model.dto.SecretDocumentDTO;
-import exprivia.it.Documenti.model.entity.SecretDocument;
+import exprivia.it.documenti.model.dto.SecretDocumentDTO;
+import exprivia.it.documenti.model.entity.SecretDocument;
 
 @Mapper(componentModel = "spring")
 public interface SecretDocumentMapper {

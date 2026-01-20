@@ -1,4 +1,4 @@
-package exprivia.it.Documenti.service.impl;
+package exprivia.it.documenti.service.impl;
 
 import java.util.List;
 
@@ -6,15 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import exprivia.it.Documenti.exception.DocumentAlreadyExistsException;
-import exprivia.it.Documenti.exception.DocumentNotFoundException;
-import exprivia.it.Documenti.exception.EmergencyProtocolException;
-import exprivia.it.Documenti.mapper.SecretDocumentMapper;
-import exprivia.it.Documenti.model.dto.SecretDocumentDTO;
-import exprivia.it.Documenti.model.entity.SecretDocument;
-import exprivia.it.Documenti.model.enums.PresidentCodeEnum;
-import exprivia.it.Documenti.repository.SecretDocumentRepository;
-import exprivia.it.Documenti.service.ISecreteDocument;
+import exprivia.it.documenti.exception.DocumentAlreadyExistsException;
+import exprivia.it.documenti.exception.DocumentNotFoundException;
+import exprivia.it.documenti.exception.EmergencyProtocolException;
+import exprivia.it.documenti.mapper.SecretDocumentMapper;
+import exprivia.it.documenti.model.dto.SecretDocumentDTO;
+import exprivia.it.documenti.model.entity.SecretDocument;
+import exprivia.it.documenti.model.enums.PresidentCodeEnum;
+import exprivia.it.documenti.repository.SecretDocumentRepository;
+import exprivia.it.documenti.service.ISecreteDocument;
 
 @Service
 public class SecretDocumentServiceImpl implements ISecreteDocument {

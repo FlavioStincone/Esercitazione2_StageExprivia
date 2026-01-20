@@ -1,4 +1,4 @@
-package exprivia.it.Documenti.security;
+package exprivia.it.documenti.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

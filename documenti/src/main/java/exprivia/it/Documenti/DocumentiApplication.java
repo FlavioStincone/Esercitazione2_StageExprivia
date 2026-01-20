@@ -1,4 +1,4 @@
-package exprivia.it.Documenti;
+package exprivia.it.documenti;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

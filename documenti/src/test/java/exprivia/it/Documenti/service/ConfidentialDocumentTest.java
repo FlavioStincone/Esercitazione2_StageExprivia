@@ -1,4 +1,4 @@
-package exprivia.it.Documenti.service;
+package exprivia.it.documenti.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -19,14 +19,14 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import exprivia.it.Documenti.exception.DocumentAlreadyExistsException;
-import exprivia.it.Documenti.exception.DocumentNotFoundException;
-import exprivia.it.Documenti.exception.InvalidPresidentCodeException;
-import exprivia.it.Documenti.mapper.ConfidentialDocumentMapper;
-import exprivia.it.Documenti.model.dto.ConfidentialDocumentDTO;
-import exprivia.it.Documenti.model.entity.ConfidentialDocument;
-import exprivia.it.Documenti.repository.ConfidentialDocumentRepository;
-import exprivia.it.Documenti.service.impl.ConfidentialDocumentServiceImpl;
+import exprivia.it.documenti.exception.DocumentAlreadyExistsException;
+import exprivia.it.documenti.exception.DocumentNotFoundException;
+import exprivia.it.documenti.exception.InvalidPresidentCodeException;
+import exprivia.it.documenti.mapper.ConfidentialDocumentMapper;
+import exprivia.it.documenti.model.dto.ConfidentialDocumentDTO;
+import exprivia.it.documenti.model.entity.ConfidentialDocument;
+import exprivia.it.documenti.repository.ConfidentialDocumentRepository;
+import exprivia.it.documenti.service.impl.ConfidentialDocumentServiceImpl;
 
 @ExtendWith(MockitoExtension.class)
 public class ConfidentialDocumentTest {
