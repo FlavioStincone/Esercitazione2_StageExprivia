@@ -18,9 +18,8 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import exprivia.it.documenti.controller.SecretDocumentController;
 import exprivia.it.documenti.model.dto.SecretDocumentDTO;
-import exprivia.it.documenti.service.ISecreteDocument;
+import exprivia.it.documenti.service.ISecretDocument;
 
 @WebMvcTest(SecretDocumentController.class)
 public class SecretDocumentControllerTest {
@@ -32,7 +31,7 @@ public class SecretDocumentControllerTest {
     private ObjectMapper objectMapper;
 
     @MockBean 
-    private ISecreteDocument service; 
+    private ISecretDocument service; 
 
     @Nested
     class getSecretDocumentsTest{

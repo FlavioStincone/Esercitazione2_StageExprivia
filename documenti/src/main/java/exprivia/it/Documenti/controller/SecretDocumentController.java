@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import exprivia.it.documenti.model.dto.SecretDocumentDTO;
-import exprivia.it.documenti.service.ISecreteDocument;
+import exprivia.it.documenti.service.ISecretDocument;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -24,7 +24,7 @@ import jakarta.validation.Valid;
 public class SecretDocumentController {
 
     @Autowired
-    private ISecreteDocument service;
+    private ISecretDocument service;
 
     //GET /secret/{presidentCode}
     @Operation(
@@ -33,7 +33,7 @@ public class SecretDocumentController {
     )
 
     @ApiResponses({
-        @ApiResponse(responseCode = "201", description = "Documenti Trovati"),
+        @ApiResponse(responseCode = "200", description = "Documenti Trovati"),
         @ApiResponse(responseCode = "400", description = "Codice Presidente non valido")
     })
 
@@ -49,7 +49,7 @@ public class SecretDocumentController {
     )
 
     @ApiResponses({
-        @ApiResponse(responseCode = "201", description = "Documenti Trovati"),
+        @ApiResponse(responseCode = "200", description = "Documenti Trovati"),
         @ApiResponse(responseCode = "400", description = "Codice Presidente non valido"),
         @ApiResponse(responseCode = "404", description = "Nessun documento trovato")
     })
@@ -68,7 +68,7 @@ public class SecretDocumentController {
     )
 
     @ApiResponses({
-        @ApiResponse(responseCode = "201", description = "Documenti Creato con Successo"),
+        @ApiResponse(responseCode = "200", description = "Documenti Creato con Successo"),
         @ApiResponse(responseCode = "400", description = "Codice Presidente non valido"),
         @ApiResponse(responseCode = "409", description = "Documento già esistente")
     })

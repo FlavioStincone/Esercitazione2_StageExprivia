@@ -5,6 +5,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +51,7 @@ class PublicDocumentIntegrationTest {
         PublicDocument documentInDb = repository.findByProtocolNumber(protocolNumber).orElseThrow();
         
         assertEquals("title", documentInDb.getTitle());
-        assert(!documentInDb.getHashSignature().equals("clearPass"));
+        assertNotEquals("clearPass", documentInDb.getHashSignature());
 
         mockMvc.perform(get("/document/public/{numProtocollo}",protocolNumber)) // ooppure "/document/public/DOC001"
                 .andExpect(status().isOk())

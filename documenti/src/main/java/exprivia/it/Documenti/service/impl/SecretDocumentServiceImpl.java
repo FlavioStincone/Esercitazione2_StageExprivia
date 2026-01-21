@@ -14,10 +14,10 @@ import exprivia.it.documenti.model.dto.SecretDocumentDTO;
 import exprivia.it.documenti.model.entity.SecretDocument;
 import exprivia.it.documenti.model.enums.PresidentCodeEnum;
 import exprivia.it.documenti.repository.SecretDocumentRepository;
-import exprivia.it.documenti.service.ISecreteDocument;
+import exprivia.it.documenti.service.ISecretDocument;
 
 @Service
-public class SecretDocumentServiceImpl implements ISecreteDocument {
+public class SecretDocumentServiceImpl implements ISecretDocument {
 
     @Autowired
     private SecretDocumentRepository repository;

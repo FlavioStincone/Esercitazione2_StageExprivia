@@ -4,7 +4,7 @@ import java.util.List;
 
 import exprivia.it.documenti.model.dto.SecretDocumentDTO;
 
-public interface ISecreteDocument {
+public interface ISecretDocument {
 
     SecretDocumentDTO createSecretDocument(SecretDocumentDTO secretDocumentDTO, String presidentCode);
 

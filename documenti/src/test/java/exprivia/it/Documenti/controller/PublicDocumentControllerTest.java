@@ -19,7 +19,6 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import exprivia.it.documenti.controller.PublicDocumentController;
 import exprivia.it.documenti.model.dto.PublicDocumentDTO;
 import exprivia.it.documenti.service.IPublicDocument;
 

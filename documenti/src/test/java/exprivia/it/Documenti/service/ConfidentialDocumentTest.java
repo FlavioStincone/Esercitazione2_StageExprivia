@@ -92,6 +92,25 @@ public class ConfidentialDocumentTest {
         }
 
         @Test
+        void should_ThrowException_When_PasswordIsNull() {
+
+            //given
+            String protocoloNumber = "1234";
+            String nullPassword = null;
+            String hashNelDb = "HASH_VERO";       
+  
+            ConfidentialDocument entity = new ConfidentialDocument(protocoloNumber, "motivo", "titolo", "content", "author", hashNelDb);
+
+            when(repository.findByProtocolNumber(protocoloNumber)).thenReturn(Optional.of(entity));
+            when(passwordEncoder.matches(nullPassword, hashNelDb)).thenReturn(false);
+
+            //when then
+            assertThrows(DocumentNotFoundException.class, () -> {
+                service.getDocumentByProtocolNumber(protocoloNumber, nullPassword);
+            });
+        }
+
+        @Test
         void should_ThrowException_When_PresidentCodeIsInvalid() {
 
             // given

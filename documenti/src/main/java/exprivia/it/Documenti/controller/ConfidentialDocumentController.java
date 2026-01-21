@@ -34,7 +34,7 @@ public class ConfidentialDocumentController {
     )
 
     @ApiResponses({
-        @ApiResponse(responseCode = "201", description = "Documenti Trovati"),
+        @ApiResponse(responseCode = "200", description = "Documenti Trovati"),
         @ApiResponse(responseCode = "400", description = "Codice Presidente non valido")
     })
 
@@ -50,7 +50,7 @@ public class ConfidentialDocumentController {
     )
 
     @ApiResponses({
-        @ApiResponse(responseCode = "201", description = "Documenti Trovati"),
+        @ApiResponse(responseCode = "200", description = "Documenti Trovati"),
         @ApiResponse(responseCode = "400", description = "Codice Presidente non valido"),
         @ApiResponse(responseCode = "404", description = "Nessun documento trovato")
     })
@@ -70,7 +70,7 @@ public class ConfidentialDocumentController {
     )
 
     @ApiResponses({
-        @ApiResponse(responseCode = "201", description = "Documenti Creato con Successo"),
+        @ApiResponse(responseCode = "200", description = "Documenti Creato con Successo"),
         @ApiResponse(responseCode = "400", description = "Codice Presidente non valido"),
         @ApiResponse(responseCode = "409", description = "Documento già esistente")
     })

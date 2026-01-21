@@ -19,7 +19,6 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import exprivia.it.documenti.controller.ConfidentialDocumentController;
 import exprivia.it.documenti.model.dto.ConfidentialDocumentDTO;
 import exprivia.it.documenti.service.IConfidentialDocument;
 

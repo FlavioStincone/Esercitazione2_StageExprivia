@@ -35,7 +35,7 @@ public class PublicDocumentController {
     )
 
     @ApiResponses({
-        @ApiResponse(responseCode = "201", description = "Documenti Trovati")
+        @ApiResponse(responseCode = "200", description = "Documenti Trovati")
     })
 
     @GetMapping("/public")
@@ -50,7 +50,7 @@ public class PublicDocumentController {
     )
 
     @ApiResponses({
-        @ApiResponse(responseCode = "201", description = "Documenti Trovati"),
+        @ApiResponse(responseCode = "200", description = "Documenti Trovati"),
         @ApiResponse(responseCode = "404", description = "Nessun documento trovato")
     })
     @GetMapping("/public/{numProtocollo}")
@@ -68,7 +68,7 @@ public class PublicDocumentController {
     )
 
     @ApiResponses({
-        @ApiResponse(responseCode = "201", description = "Documenti Creato con Successo"),
+        @ApiResponse(responseCode = "200", description = "Documenti Creato con Successo"),
         @ApiResponse(responseCode = "409", description = "Documento già esistente")
     })
 
