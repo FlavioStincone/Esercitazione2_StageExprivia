@@ -1,0 +1,26 @@
+{
+    "java.compile.nullAnalysis.mode": "automatic",
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "maven.terminal.favorites": [
+        {
+            "command": "spring-boot:run",
+            "debug": false
+        },
+        {
+            "command": "clean install",
+            "debug": false
+        },
+        {
+            "command": "clean install -DskipTests",
+            "debug": false
+        },
+        {
+            "command": "clean test -Ptest",
+            "debug": false
+        },
+        {
+            "command": "clean compile",
+            "debug": false
+        }
+    ]
+}

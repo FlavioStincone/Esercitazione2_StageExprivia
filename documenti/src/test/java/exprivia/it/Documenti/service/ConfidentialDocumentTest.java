@@ -47,66 +47,48 @@ public class ConfidentialDocumentTest {
     class getDocumentByProtocolNumberTest{
         
         @Test
-        public void should_ReturnDto_When_PasswordIsCorrect(){
+        public void should_ReturnDto_When_SignatureIsCorrect(){
 
             //given
             String protocoloNumber = "1234";
-            String passwordInput = "passwordSegreta"; 
-            String passwordInDB = "HASH_XYZ";           
+            String signatureInput = "passwordSegreta"; 
+            String signatureInDB = "HASH_XYZ";           
 
-            ConfidentialDocument entity = new ConfidentialDocument(protocoloNumber, "motivo", "titolo", "content", "author", passwordInDB);
+            ConfidentialDocument entity = new ConfidentialDocument(protocoloNumber, "motivo", "titolo", "content", "author", signatureInDB);
 
-            ConfidentialDocumentDTO expectedDto = new ConfidentialDocumentDTO(protocoloNumber, "motivo", "titolo", "content", "author", passwordInDB);
+            ConfidentialDocumentDTO expectedDto = new ConfidentialDocumentDTO(protocoloNumber, "motivo", "titolo", "content", "author", signatureInDB);
 
             when(repository.findByProtocolNumber(protocoloNumber)).thenReturn(Optional.of(entity));
-            when(passwordEncoder.matches(passwordInput, entity.getHashSignature())).thenReturn(true);
+            when(passwordEncoder.matches(signatureInput, entity.getHashSignature())).thenReturn(true);
             when(mapper.toDTO(entity)).thenReturn(expectedDto);
 
             //when
-            ConfidentialDocumentDTO result = service.getDocumentByProtocolNumber(protocoloNumber, passwordInput);
+            ConfidentialDocumentDTO result = service.getDocumentByProtocolNumber(protocoloNumber, signatureInput);
 
             //then
             assertNotNull(result);
             assertEquals(expectedDto, result);
+            assertEquals(expectedDto.hashSignature(), result.hashSignature());
             
-            verify(passwordEncoder).matches(passwordInput, passwordInDB);
+            verify(passwordEncoder).matches(signatureInput, signatureInDB);
         }
 
         @Test
-        void should_ThrowException_When_PasswordIsWrong() {
+        void should_ThrowException_When_SignatureIsWrong() {
 
             //given
             String protocoloNumber = "1234";
-            String wrongPassword = "pippo";
+            String wrongSignature = "pippo";
             String hashNelDb = "HASH_VERO";       
   
             ConfidentialDocument entity = new ConfidentialDocument(protocoloNumber, "motivo", "titolo", "content", "author", hashNelDb);
 
             when(repository.findByProtocolNumber(protocoloNumber)).thenReturn(Optional.of(entity));
-            when(passwordEncoder.matches(wrongPassword, hashNelDb)).thenReturn(false);
+            when(passwordEncoder.matches(wrongSignature, hashNelDb)).thenReturn(false);
 
             //when then
             assertThrows(DocumentNotFoundException.class, () -> {
-                service.getDocumentByProtocolNumber(protocoloNumber, wrongPassword);
-            });
-        }
-
-        @Test
-        void should_ThrowException_When_PasswordIsNull() {
-
-            //given
-            String protocoloNumber = "1234";
-            String nullPassword = null;
-            String hashNelDb = "HASH_VERO";       
-  
-            ConfidentialDocument entity = new ConfidentialDocument(protocoloNumber, "motivo", "titolo", "content", "author", hashNelDb);
-
-            when(repository.findByProtocolNumber(protocoloNumber)).thenReturn(Optional.of(entity));
-            when(passwordEncoder.matches(nullPassword, hashNelDb)).thenReturn(false);
-
-            //when then
-            assertThrows(DocumentNotFoundException.class, () -> {
-                service.getDocumentByProtocolNumber(protocoloNumber, nullPassword);
+                service.getDocumentByProtocolNumber(protocoloNumber, wrongSignature);
             });
         }
 
@@ -141,6 +123,31 @@ public class ConfidentialDocumentTest {
             ConfidentialDocumentDTO result = service.getDocumentByProtocolNumber(protocoloNumber, presidentCode);
 
             //then
+            assertNotNull(result);
+            assertEquals(expectedDto, result);
+        }
+
+        @Test
+        void should_ReturnDto_When_PresidentCodeIsValid_And_SignatureIsWrong() { // Renamed for clarity
+
+            // given
+            String protocolNumber = "1234";
+            String presidentCode = "PRT45";
+            String realHash = "HASH_REAL";
+
+            ConfidentialDocument entity = new ConfidentialDocument(protocolNumber, "motivo", "titolo", "content", "author", realHash);
+            ConfidentialDocumentDTO expectedDto = new ConfidentialDocumentDTO(protocolNumber, "motivo", "titolo", "content", "author", realHash);
+
+            when(repository.findByProtocolNumber(protocolNumber)).thenReturn(Optional.of(entity));
+            
+            when(passwordEncoder.matches(presidentCode, entity.getHashSignature())).thenReturn(false);
+            
+            when(mapper.toDTO(entity)).thenReturn(expectedDto);
+
+            // when
+            ConfidentialDocumentDTO result = service.getDocumentByProtocolNumber(protocolNumber, presidentCode);
+
+            // then
             assertNotNull(result);
             assertEquals(expectedDto, result);
         }
@@ -181,13 +188,41 @@ public class ConfidentialDocumentTest {
             verify(repository).findAll();
         }
 
-         @Test
+        @Test
         void should_ThrowException_When_PresidentCodeIsInvalid() {
 
             // given
             String invalidPresidentCode = "INVALID_CODE";
             
            //when then
+            assertThrows(InvalidPresidentCodeException.class, () -> {
+                service.getConfidentialDocuments(invalidPresidentCode);
+            });
+
+            verify(repository, never()).findAll();
+        }
+
+        @Test
+        void should_ThrowException_When_PresidentCodeIsNull() {
+
+            // given
+            String invalidPresidentCode = null;
+            
+           //when then
+            assertThrows(InvalidPresidentCodeException.class, () -> {
+                service.getConfidentialDocuments(invalidPresidentCode);
+            });
+
+            verify(repository, never()).findAll();
+        }
+
+        @Test
+        void should_ThrowException_When_PresidentCodeIsBlank() {
+
+            // given
+            String invalidPresidentCode = " ";
+            
+            //when then
             assertThrows(InvalidPresidentCodeException.class, () -> {
                 service.getConfidentialDocuments(invalidPresidentCode);
             });
@@ -259,6 +294,34 @@ public class ConfidentialDocumentTest {
 
             verify(repository, never()).save(any());
 
+        }
+
+        @Test
+        void should_ThrowException_When_PresidentCodeIsNull(){
+
+            // given
+            String nullPresidentCode = null; 
+            
+            ConfidentialDocumentDTO inputDTO = new ConfidentialDocumentDTO("123", "motivo", "titolo", "cont", "auth", "PasswordChiara");
+            
+            //when then
+            assertThrows(InvalidPresidentCodeException.class, () -> {
+                service.createConfidentialDocument(inputDTO, nullPresidentCode);
+            });
+        }
+
+        @Test
+        void should_ThrowException_When_PresidentCodeIsBlank(){
+
+            // given
+            String nullPresidentCode = " "; 
+            
+            ConfidentialDocumentDTO inputDTO = new ConfidentialDocumentDTO("123", "motivo", "titolo", "cont", "auth", "PasswordChiara");
+            
+            //when then
+            assertThrows(InvalidPresidentCodeException.class, () -> {
+                service.createConfidentialDocument(inputDTO, nullPresidentCode);
+            });
         }
     }
     
